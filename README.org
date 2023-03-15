@@ -1,0 +1,6 @@
+* Implementation of a custom 2D-FFT algorithm
+This file is for the documentation of my implementation of the 2D-FFT algorithm. The followin Image
+gives an idea how the Radix-2 FFT works:
+
+** Radix-2 FFT butterfly
+[[Radix-2-FFT-butterfly.png]]
