@@ -6,7 +6,12 @@ gives an idea how the Radix-2 FFT works:
 [[Radix-2-FFT-butterfly.png]]
 
 
-** Recursive function of the implementation
+** Recursive function of the implementation: divide and conquere
+Here I will document how exactly the recursive function and the Radix-2-FFT butterfly are related:
+They divide a bigger calculation into sub-calculation/simpler ones.
+
+My function does that, until a stop condition is reached. Following code employs this scheme:
+
 #+begin_src python :session
 import numpy as np
 
