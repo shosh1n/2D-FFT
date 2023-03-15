@@ -47,3 +47,15 @@ import numpy as np
         return X_k
 
 #+end_src
+
+** The Complex Plane
+
+*** complex roots
+
+*** Symmetry of the plane
+
+*** Summation and Multiplication
+
+*** Meaning of Transposition
+
+** Time efficiency
