@@ -4,3 +4,41 @@ gives an idea how the Radix-2 FFT works:
 
 ** Radix-2 FFT butterfly
 [[Radix-2-FFT-butterfly.png]]
+
+
+** Recursive function of the implementation
+#+begin_src python :session
+import numpy as np
+
+ def customFFT(x):
+    N = len(x)
+    if N == 1:
+        #zeroth-bin is just the sample itself; if periodic and well-behaved = 0
+        return x
+    else:
+        #divide the input into even-indexed and odd-indexed sequences
+
+        #store even elements
+        x_even = x[::2]
+
+        #store odd elements
+        x_odd = x[1::2]
+
+        #start the even fft recursive decimatation until 1 gets returned
+        #'drive' resumes on the recursive 'parked' executions on N=2
+        X_even = customFFT(x_even)
+        X_odd = customFFT(x_odd)
+
+        #taking N-roots from the complex plane
+        W_N = np.exp(-2j * np.pi/(N) )
+
+        X_k = np.zeros(N, dtype=np.complex128)
+
+        #multiplying samples with evenly spaced roots on the complex plane; circle-symmetry allows k = N/2
+        for k in range(N//2):
+            X_k[k] = X_even[k] + W_N ** k * X_odd[k]
+            X_k[k + N//2] = X_even[k] - W_N ** k * X_odd[k]
+
+        return X_k
+
+#+end_src
